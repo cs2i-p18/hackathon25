@@ -1,6 +1,6 @@
 # Containers Docker PHP
 
-Ensemble de containers pour du développement PHP _vanilla_ avec bases de données.
+Ensemble de containers pour du développement PHP _vanilla_ ou _frameworks_ avec bases de données.
 
 * Serveur **Nginx**
 * **PHP**
@@ -51,18 +51,9 @@ Ensemble de containers pour du développement PHP _vanilla_ avec bases de donné
 
 ## <a name='ConfigurationautomatiquedesserveursdanspgAdmin'></a>Configuration automatique des serveurs dans pgAdmin
 
-Il est possible de faire en sorte que le **serveur PostgreSQL** doit référencé automatiquement dans **pgAdmin**.
+Le **serveur PostgreSQL** est normalement référencé automatiquement dans **pgAdmin** (vous devriez voir le serveur dans l'arborescence de **pgAdmin**).
 
-Pour que cette configuration automatique de pgAdmin fonctionne, attributez le fichier `servers.json` au user:group `5050:5050`.
-pgAdmin s'exécute sous cette identité, et doit avoir les droits suffisants pour lire `servers.json`.
-
-**Attribuez ces droits AVANT le premier lancement du container pgAdmin :**
-
-```bash
-sudo chown 5050:5050 servers.json
-```
-
-En cas d'oubli, vous avez toujours la possibilité d'ajouter le serveur `pgdb` manuellement à pgAdmin, après son lancement.
+Si ce n'est pas le cas, vous avez toujours la possibilité d'ajouter le serveur `pgdb` manuellement à pgAdmin, après son lancement.
 
 
 ## <a name='Dmarragemanueldescontainers'></a>Démarrage manuel des containers
@@ -71,7 +62,7 @@ En cas d'oubli, vous avez toujours la possibilité d'ajouter le serveur `pgdb` m
 docker-compose up -d
 ```
 
-> **Note :** Les containers de base de données peuvent mettre un certain temps à s'initialiser.
+> **Note :** Les containers de base de données peuvent mettre un certain temps à s'initialiser, au premier lancement.
 
 ## <a name='Arrtmanueldescontainers'></a>Arrêt manuel des containers
 
@@ -91,7 +82,11 @@ make up
 make down
 
 # Arrêter les containers et supprimer les volumes associés
+# ATTENTION : dans ce cas, les données sont perdues
 make downwipe
+
+# Redémarrer les containers 
+make restart
 
 # Se connecter au container PostgreSQL
 make pgshell
@@ -109,6 +104,11 @@ make mysql
 # (permet notamment d'utiliser Composer)
 make phpshell
 ```
+
+> **Note** : l'utilisation du `makefile` suppose que `make` est installé sur votre machine. Si ce n'est pas le cas :
+> ```bash
+> sudo apt install make
+> ```
 
 ## <a name='Testdelaconfiguration'></a>Test de la configuration
 
