@@ -4,14 +4,14 @@
 
 include:
   # PostgreSQL configuration
-  - path: ./docker.conf/compose-postgres.yml
-    project_directory: .                      # to load servers.json properly 
-    env_file: ./docker.conf/postgres.env
+  # - path: ./docker.conf/compose-postgres.yml
+  #   project_directory: .                      # to load servers.json properly 
+  #   env_file: ./docker.conf/postgres.env
 
   # Maria configuration (uncomment to use MariaDB)
-  # - path: ./docker.conf/compose-maria.yml
-  #   project_directory: ..
-  #   env_file: ./docker.conf/maria.env
+  - path: ./docker.conf/compose-maria.yml
+    project_directory: ..
+    env_file: ./docker.conf/maria.env
 
 # ======================================================================================================================
 # NETWORKS
